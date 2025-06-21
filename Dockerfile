@@ -31,4 +31,4 @@ RUN npm install --only=production
 EXPOSE 3001
 
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["sh", "-c", "cd /app/.wasp/build && npm run start"]
