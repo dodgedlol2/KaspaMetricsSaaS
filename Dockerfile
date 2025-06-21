@@ -27,8 +27,11 @@ RUN wasp build
 WORKDIR /app/.wasp/build
 RUN npm install --only=production
 
+# Debug: Check what's in package.json
+RUN cat package.json
+
 # Expose port
 EXPOSE 3001
 
-# Start the application
-CMD ["npm", "run", "start"]
+# Start the application with explicit shell
+CMD ["/bin/bash", "-c", "npm run start"]
