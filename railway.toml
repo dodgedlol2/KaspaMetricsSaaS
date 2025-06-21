@@ -1,0 +1,10 @@
+[build]
+builder = "nixpacks"
+
+[build.nixpacksConfig]
+installPhase = "npm install -g @wasp-lang/cli && wasp build"
+startPhase = "cd .wasp/build && npm install && npm run start"
+
+[deploy]
+healthcheckPath = "/"
+healthcheckTimeout = 300
