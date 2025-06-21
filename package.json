@@ -37,10 +37,7 @@
     "prisma": "5.19.1",
     "typescript": "^5.1.0",
     "vite": "^4.3.9"
-  }
-}
-{
-  "scripts": {
+    "scripts": {
     "build": "npm install -g @wasp-lang/cli@latest && wasp build && cd .wasp/build && npm install",
     "start": "cd .wasp/build && npm run start"
   }
