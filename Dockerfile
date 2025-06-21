@@ -1,22 +1,27 @@
-FROM node:20-alpine
+FROM node:20-slim
 
-# Install necessary packages including curl
-RUN apk add --no-cache python3 make g++ curl
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install Wasp CLI and ensure it's in PATH
-RUN curl -sSL https://get.wasp-lang.dev/installer.sh | sh
+# Install Wasp CLI
+RUN curl -sSL https://get.wasp.sh/installer.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
 # Copy source code
 COPY . .
 
 # Build the Wasp app
-RUN /root/.local/bin/wasp build
+RUN wasp build
 
 # Install dependencies for the built app
 WORKDIR /app/.wasp/build
