@@ -39,3 +39,9 @@
     "vite": "^4.3.9"
   }
 }
+{
+  "scripts": {
+    "build": "npm install -g @wasp-lang/cli@latest && wasp build && cd .wasp/build && npm install",
+    "start": "cd .wasp/build && npm run start"
+  }
+}
