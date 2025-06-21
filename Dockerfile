@@ -23,7 +23,7 @@ COPY . .
 # Build the Wasp app
 RUN wasp build
 
-# Install dependencies for the built app
+# Move to the built app directory and install production dependencies
 WORKDIR /app/.wasp/build
 RUN npm install --only=production
 
@@ -31,4 +31,4 @@ RUN npm install --only=production
 EXPOSE 3001
 
 # Start the application
-CMD ["sh", "-c", "cd /app/.wasp/build && npm run start"]
+CMD ["npm", "run", "start"]
