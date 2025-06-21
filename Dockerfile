@@ -1,14 +1,14 @@
 FROM node:20-alpine
 
-# Install necessary packages
-RUN apk add --no-cache python3 make g++
+# Install necessary packages including curl
+RUN apk add --no-cache python3 make g++ curl
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install Wasp CLI
+# Install Wasp CLI and ensure it's in PATH
 RUN curl -sSL https://get.wasp-lang.dev/installer.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
@@ -16,7 +16,7 @@ ENV PATH="/root/.local/bin:$PATH"
 COPY . .
 
 # Build the Wasp app
-RUN wasp build
+RUN /root/.local/bin/wasp build
 
 # Install dependencies for the built app
 WORKDIR /app/.wasp/build
