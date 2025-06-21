@@ -8,8 +8,9 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install Wasp CLI globally
-RUN npm install -g @wasp-lang/cli@latest
+# Install Wasp CLI
+RUN curl -sSL https://get.wasp-lang.dev/installer.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
 
 # Copy source code
 COPY . .
